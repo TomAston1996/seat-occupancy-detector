@@ -6,16 +6,28 @@
 //  \____/\____/\_| |_/\_/       \___/ \____/ \____/     |___/ \____/  \_/ \____/ \____/ \_/ 
 
 /**
- * @file    app.cpp
- * @brief   aggregated header file for all header files in the app
- * @version     1.0   
+ * @file    Application.hpp
+ * @brief   application logic controller
+ * @version	    1.0
  * @author  Tom Aston
  */
 
-#ifndef APP_HPP_
-#define APP_HPP_
+class Application 
+{
+    public:
+        
+        /**
+         * @brief app initialistion code
+         */
+        static void start();
 
-#include "include/Log.hpp"
-#include "include/Common.hpp"
+        /**
+         * @brief main application loop i.e. constant stream of video frames
+         */
+        static void loop();
 
-#endif //APP_HPP_
+        /**
+         * @brief app cleanup
+         */
+        static void end();
+};

@@ -6,29 +6,17 @@
 //  \____/\____/\_| |_/\_/       \___/ \____/ \____/     |___/ \____/  \_/ \____/ \____/ \_/ 
 
 /**
- * @file    Common.hpp
- * @brief   some common types
- * @version	    1.0
+ * @file    app.cpp
+ * @brief   aggregated header file for all header files in the app
+ * @version     1.0   
  * @author  Tom Aston
  */
 
-#ifndef COMMON_H_
-#define COMMON_H_
+#ifndef APP_HPP_
+#define APP_HPP_
 
-#include <math.h>			
-#include <stddef.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <sys/types.h>
+#include "include/Log.hpp"
+#include "include/Common.hpp"
+#include "include/Application.hpp"
 
-#ifndef chat_t_defined
-#define char_t_defined
-typedef char char_t;
-#endif
-
-#ifndef int_t_defined
-#define int_t_defined
-typedef char int_t;
-#endif
-
-#endif /* COMMON_H_ */
+#endif //APP_HPP_

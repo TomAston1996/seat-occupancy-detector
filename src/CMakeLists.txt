@@ -12,4 +12,4 @@ project(SeatOccupancyDetector VERSION 0.1.0)
 include_directories(include)
 
 #adds src library named SeatOccupancyDetector as a library
-add_library(${PROJECT_NAME} utils/Log.cpp)
+add_library(${PROJECT_NAME} utils/Log.cpp app/Application.cpp)

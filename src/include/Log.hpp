@@ -6,7 +6,7 @@
 //  \____/\____/\_| |_/\_/       \___/ \____/ \____/     |___/ \____/  \_/ \____/ \____/ \_/ 
 
 /**
- * @file    Log.h
+ * @file    Log.hpp
  * @brief   header file for Log.cpp
  * @version     1.0   
  * @author  Tom Aston

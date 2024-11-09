@@ -13,10 +13,11 @@
  */
 
 #include <iostream>
-#include <app.hpp>
 #include <chrono>
 #include <thread>
 #include <string> 
+
+#include <AppHeaders.hpp>
 
 /**
  * @param	[in] 	argc	Count of arguments
@@ -25,16 +26,14 @@
  */
 int main(int argc, char **argv)
 {
-    Log::create(); //create singleton instance of Log
-    Log::log_info("Initialising Seat Occupancy Detection...", "Main");
-    Log::log_info("Entering app loop..", "Main");
-    
-    int i = 0;
-    while (i++ < 10) {
-        //TODO app logic goes here
-        Log::log_info("Info...", "Loop");
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    }
+    //app initialisation
+    Application::start();
+
+    //app main loop
+    Application::loop();
+
+    //app cleanup
+    Application::end();
 
     return 0;
 }
