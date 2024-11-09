@@ -18,12 +18,12 @@ More to come!
 ### Dependencies
 The following dependencies are required to build and run this project:
 - **CMake** >= 3.10: Build system for managing the project configuration. [Installation Guide](https://cmake.org/install/)
-- TBC
+- **OpenCV** >= 4.10.0: Open source computer vision library. [OpenCV Releases](https://opencv.org/releases/) 
 
 ### System Requirements
 
 - **Operating System**: Linux, macOS, or Windows
-- **Compiler**: GCC >= 9.0, Clang >= 10.0, or MSVC >= 2019
+- **Compiler**: GCC >= 9.0, Clang >= 10.0, or MSVC >= 2019 (requires 64-bit compiler for OpenCV compatibility)
 - **C++ Standard**: Requires C++17 or higher
 
 ## 🧑‍🤝‍🧑 Developers 
