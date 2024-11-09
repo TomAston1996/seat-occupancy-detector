@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.10.0)
 project(main)
 
 #determine whether running on 32 of 64 bit machine
-set(OSBitness 32)
+set(OSBitness 64)
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(OSBitness 64)
 endif()
@@ -20,6 +20,10 @@ set(FullOutputDir "${CMAKE_SOURCE_DIR}/bin/${CMAKE_SYSTEM_NAME}-${OSBitness}/${C
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}/staticLib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
+
+#add openCV
+find_package(OpenCV 4.10.0 REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 #add subdirs
 include_directories(src)
@@ -31,4 +35,4 @@ endif()
 add_executable(${PROJECT_NAME} main.cpp)
 
 #link dependencies from src
-target_link_libraries(${PROJECT_NAME} SeatOccupancyDetector)
+target_link_libraries(${PROJECT_NAME} SeatOccupancyDetector ${OpenCV_LIBS})

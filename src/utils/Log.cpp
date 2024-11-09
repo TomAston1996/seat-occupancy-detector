@@ -48,7 +48,7 @@ void Log::get_timestamp_ms(char* buf)
     time_t now = time(0);
     struct tm tstruct;
 
-    tstruct = *localtime(&now);
+    localtime_s(&tstruct, &now);
 
     strftime(buf, 80, "%Y-%m-%d.%X", &tstruct);
 }

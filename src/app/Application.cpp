@@ -14,6 +14,8 @@
 #include <chrono>
 #include <thread>
 
+#include <opencv2/opencv.hpp>
+
 #include "Log.hpp"
 #include "Application.hpp"
 
@@ -22,6 +24,11 @@ void Application::start()
     Log::create(); //create singleton instance of Log
     Log::log_info("Initialising Seat Occupancy Detection...", "Application");
     Log::log_info("Entering app loop..", "Application");
+
+    std::string image_path = "../../../../resource/test.png"; // <- running from Debug dir
+    cv::Mat img = cv::imread(image_path);
+    cv::imshow("Display window", img);
+    cv::waitKey(0);
 }
 
 void Application::loop()
