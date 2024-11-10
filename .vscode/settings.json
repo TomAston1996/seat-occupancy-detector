@@ -79,6 +79,11 @@
         "numbers": "cpp",
         "semaphore": "cpp",
         "span": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "complex": "cpp",
+        "list": "cpp",
+        "queue": "cpp",
+        "set": "cpp",
+        "xhash": "cpp"
     }
 }
