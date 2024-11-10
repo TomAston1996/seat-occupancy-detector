@@ -31,4 +31,4 @@ typedef char char_t;
 typedef char int_t;
 #endif
 
-#endif /* COMMON_H_ */
+#endif //COMMON_H_

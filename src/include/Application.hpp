@@ -11,6 +11,8 @@
  * @version	    1.0
  * @author  Tom Aston
  */
+#ifndef APPLICATION_H_
+#define APPLICATION_H_
 
 class Application 
 {
@@ -31,3 +33,5 @@ class Application
          */
         static void end();
 };
+
+#endif //APPLICATION_H_

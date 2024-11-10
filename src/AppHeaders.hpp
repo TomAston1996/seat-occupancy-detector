@@ -12,11 +12,12 @@
  * @author  Tom Aston
  */
 
-#ifndef APP_HPP_
-#define APP_HPP_
+#ifndef APP_HEADERS_H_
+#define APP_HEADERS_H_
 
 #include "include/Log.hpp"
 #include "include/Common.hpp"
 #include "include/Application.hpp"
+#include "include/FaceDetect.hpp"
 
-#endif //APP_HPP_
+#endif //APP_HEADERS_H_

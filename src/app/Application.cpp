@@ -11,9 +11,6 @@
  * @version	    1.0
  * @author  Tom Aston
  */
-#include <chrono>
-#include <thread>
-
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
@@ -21,6 +18,7 @@
 
 #include "Log.hpp"
 #include "Application.hpp"
+#include "FaceDetect.hpp"
 
 void Application::start()
 {
@@ -31,36 +29,19 @@ void Application::start()
 
 void Application::loop()
 {
-    //TODO main application logic goes here
     cv::VideoCapture video(0); // <- web cam for test purposes
     cv::Mat image;
 
-    std::string path_to_haarcascade = "../../../../resource/haarcascade_frontalface_default.xml";
-
-    cv::CascadeClassifier face_cascade;
-    face_cascade.load(path_to_haarcascade);
-
+    FaceDetect face_detect;
 
     bool run_loop = true;
-    if (face_cascade.empty()) {
-        Log::log_info("XML file not loaded", "Application");
+    if (!face_detect.get_setup_status()) {
         run_loop = false;
+        Log::log_info("Load config error...", "Application");
     }
 
     while (run_loop) {
-        video.read(image);
-
-        std::vector<cv::Rect> faces;
-        face_cascade.detectMultiScale(image, faces, 1.3, 5);
-
-        for (int i = 0; i < faces.size(); i++) {
-            //drawing rectangle around faces found in the output window (color: red, thickness: 3)
-            cv::rectangle(image, faces[i].tl(), faces[i].br(), cv::Scalar(50, 50, 255), 3);
-
-            //display count of faces found in top left corner of output window - testing purposes
-            cv::putText(image, std::to_string(faces.size()), cv::Point(10, 40), cv::FONT_HERSHEY_DUPLEX, 1, cv::Scalar(255, 255, 255), 1);
-        }
-
+        int number_of_faces = face_detect.get_number_of_faces_detected(image, video);
         cv::imshow("Frame", image);
         cv::waitKey(1);
     }
