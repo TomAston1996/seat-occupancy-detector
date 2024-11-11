@@ -20,8 +20,8 @@
 
 FaceDetect::FaceDetect() 
 {
-    FaceDetect::path_to_haarcascade_frontal_xml = "../../../../resource/haarcascade_frontalface_default.xml";
-    FaceDetect::path_to_haarcascade_profile_xml = "../../../../resource/haarcascade_profileface.xml";
+    FaceDetect::path_to_haarcascade_frontal_xml = "../../../resource/haarcascade_frontalface_default.xml";
+    FaceDetect::path_to_haarcascade_profile_xml = "../../../resource/haarcascade_profileface.xml";
     
     FaceDetect::face_cascade_frontal.load(path_to_haarcascade_frontal_xml);
     FaceDetect::face_cascade_profile.load(path_to_haarcascade_profile_xml);

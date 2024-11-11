@@ -17,6 +17,9 @@
 #include <thread>
 #include <string> 
 
+#include <windows.h>
+#include <filesystem>
+
 #include <AppHeaders.hpp>
 
 /**
@@ -25,7 +28,7 @@
  * @return	Exit code.
  */
 int main(int argc, char **argv)
-{
+{   
     //app initialisation
     Application::start();
 

@@ -60,14 +60,17 @@ void Application::test()
     //TODO misc test code
     FaceDetect face_detect;
 
-    std::string test_image_path = "../../../../resource/test-train.png";
+    std::string test_image_path = "../../../resource/test-train.png";
     cv::Mat img = cv::imread(test_image_path);
     cv::Mat img_blur;
+    cv::Mat img_grey;
 
     cv::GaussianBlur(img, img_blur, cv::Size(7, 7), 5, 0);
 
-    face_detect.detect_faces_in_image(img);
+    cv::cvtColor(img, img_grey, cv::COLOR_BGR2GRAY);
 
-    cv::imshow("Display window", img);
+    face_detect.detect_faces_in_image(img_grey);
+
+    cv::imshow("Display window", img_grey);
     cv::waitKey(0);
 }
