@@ -30,8 +30,10 @@ void Application::start()
 void Application::loop()
 {
     cv::VideoCapture video(0); // <- web cam for test purposes
+    
     cv::Mat image;
 
+    //initialise face detection module
     FaceDetect face_detect;
 
     bool run_loop = true;
