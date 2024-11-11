@@ -32,6 +32,11 @@ class Application
          * @brief app cleanup
          */
         static void end();
+
+        /**
+         * @brief misc test method
+         */
+        static void test();
 };
 
 #endif //APPLICATION_H_

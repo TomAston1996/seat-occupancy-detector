@@ -20,12 +20,16 @@
 
 FaceDetect::FaceDetect() 
 {
-    FaceDetect::path_to_haarcascade = "../../../../resource/haarcascade_frontalface_default.xml";
-    FaceDetect::face_cascade.load(path_to_haarcascade);
+    FaceDetect::path_to_haarcascade_frontal_xml = "../../../../resource/haarcascade_frontalface_default.xml";
+    FaceDetect::path_to_haarcascade_profile_xml = "../../../../resource/haarcascade_profileface.xml";
+    
+    FaceDetect::face_cascade_frontal.load(path_to_haarcascade_frontal_xml);
+    FaceDetect::face_cascade_profile.load(path_to_haarcascade_profile_xml);
+    
 
     FaceDetect::is_setup = true;
-    if (face_cascade.empty()) {
-        Log::log_info("XML file not loaded", "Application");
+    if (face_cascade_frontal.empty() || face_cascade_profile.empty()) {
+        Log::log_info("XML haar cascade profiles not loaded", "Application");
         FaceDetect::is_setup = false;
     }
 }
@@ -40,11 +44,32 @@ void FaceDetect::draw_face_detect_outlines_to_image(cv::Mat& current_frame, std:
     for (int i = 0; i < faces.size(); i++) {
         //drawing rectangle around faces found in the output window (color: red, thickness: 3)
         cv::rectangle(current_frame, faces[i].tl(), faces[i].br(), cv::Scalar(50, 50, 255), 3);
-
-        //display count of faces found in top left corner of output window - testing purposes
-        cv::putText(current_frame, std::to_string(faces.size()), cv::Point(10, 40), cv::FONT_HERSHEY_DUPLEX, 1, cv::Scalar(255, 255, 255), 1);
     }
 }
+
+int FaceDetect::detect_faces_in_image(cv::Mat& image)
+{
+    assert(FaceDetect::is_setup);
+
+    std::vector<cv::Rect> frontal_faces;
+    std::vector<cv::Rect> profile_faces;
+    
+    //detect front profiles
+    face_cascade_frontal.detectMultiScale(image, frontal_faces, 1.3, 5);
+    FaceDetect::draw_face_detect_outlines_to_image(image, frontal_faces);
+    
+    //detect side profiles
+    face_cascade_profile.detectMultiScale(image, profile_faces, 1.3, 5);
+    FaceDetect::draw_face_detect_outlines_to_image(image, profile_faces);
+
+    int number_faces_found = profile_faces.size() + frontal_faces.size();
+
+    //display count of faces found in top left corner of output window - testing purposes
+    cv::putText(image, std::to_string(number_faces_found), cv::Point(10, 40), cv::FONT_HERSHEY_DUPLEX, 1, cv::Scalar(255, 255, 255), 1);
+
+    return number_faces_found;
+}
+
 
 int FaceDetect::get_number_of_faces_detected(cv::Mat& current_frame, cv::VideoCapture& video) 
 {
@@ -52,10 +77,5 @@ int FaceDetect::get_number_of_faces_detected(cv::Mat& current_frame, cv::VideoCa
     
     video.read(current_frame);
 
-    std::vector<cv::Rect> faces;
-    face_cascade.detectMultiScale(current_frame, faces, 1.3, 5);
-
-    FaceDetect::draw_face_detect_outlines_to_image(current_frame, faces);
-
-    return faces.size();
+    return detect_faces_in_image(current_frame);
 }

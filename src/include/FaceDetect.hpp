@@ -33,17 +33,26 @@ class FaceDetect
         bool get_setup_status();
 
         /**
-         * @brief gets the number of faces detetcted in the image frame
+         * @brief gets the number of faces detected in the image frame from a video
          * @param current_frame the current video stream frame
          * @param video VideoCapture object passed by reference
          * @return number of faces detetcted in the image frame
          */
         int get_number_of_faces_detected(cv::Mat& current_frame, cv::VideoCapture& video);
 
+        /**
+         * @brief 
+         */
+        int detect_faces_in_image(cv::Mat& image);
+
     protected:
 
-        std::string path_to_haarcascade;
-        cv::CascadeClassifier face_cascade; 
+        std::string path_to_haarcascade_frontal_xml; //frontal profile
+        std::string path_to_haarcascade_profile_xml; //side profile
+        
+        cv::CascadeClassifier face_cascade_frontal; 
+        cv::CascadeClassifier face_cascade_profile; 
+        
         bool is_setup;
 
         /**

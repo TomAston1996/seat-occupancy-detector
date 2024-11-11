@@ -29,8 +29,11 @@ int main(int argc, char **argv)
     //app initialisation
     Application::start();
 
+    //app test method
+    Application::test();
+
     //app main loop
-    Application::loop();
+    // Application::loop();
 
     //app cleanup
     Application::end();
