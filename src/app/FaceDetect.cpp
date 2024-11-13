@@ -47,6 +47,18 @@ void FaceDetect::draw_face_detect_outlines_to_image(cv::Mat& current_frame, std:
     }
 }
 
+void FaceDetect::preprocess_image(cv::Mat& image) 
+{
+    //add gaussian blur to smoothe uneven pixel values in an image by cutting out the extreme outliers
+    cv::GaussianBlur(image, image, cv::Size(7, 7), 5, 0);
+
+    //add grayscale filter to elimiate color data
+    cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
+
+    //normalise to fix issues with brightness
+    cv::normalize(image, image, 0, 255, cv::NORM_MINMAX);
+}
+
 int FaceDetect::detect_faces_in_image(cv::Mat& image)
 {
     assert(FaceDetect::is_setup);
@@ -55,7 +67,7 @@ int FaceDetect::detect_faces_in_image(cv::Mat& image)
     std::vector<cv::Rect> profile_faces;
     
     //detect front profiles
-    face_cascade_frontal.detectMultiScale(image, frontal_faces, 1.3, 5);
+    face_cascade_frontal.detectMultiScale(image, frontal_faces, 1.1, 5);
     FaceDetect::draw_face_detect_outlines_to_image(image, frontal_faces);
     
     //detect side profiles
@@ -76,6 +88,9 @@ int FaceDetect::get_number_of_faces_detected(cv::Mat& current_frame, cv::VideoCa
     assert(FaceDetect::is_setup);
     
     video.read(current_frame);
+
+    //image pre-proccessing
+    FaceDetect::preprocess_image(current_frame);
 
     return detect_faces_in_image(current_frame);
 }

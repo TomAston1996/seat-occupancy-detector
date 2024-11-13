@@ -41,9 +41,19 @@ class FaceDetect
         int get_number_of_faces_detected(cv::Mat& current_frame, cv::VideoCapture& video);
 
         /**
-         * @brief 
+         * @brief calculate the number of faces retect in an image frame
+         * @param image image frame
+         * @return number faces detected
          */
         int detect_faces_in_image(cv::Mat& image);
+
+
+         /**
+         * @brief processes the image for better face detection by adding gaussian blur, grescale and normalising the image to fix issues with brightness
+         * @param image image frame
+         * @return 
+         */
+        void preprocess_image(cv::Mat& image);
 
     protected:
 

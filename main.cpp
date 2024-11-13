@@ -33,10 +33,10 @@ int main(int argc, char **argv)
     Application::start();
 
     //app test method
-    Application::test();
+    // Application::test();
 
     //app main loop
-    // Application::loop();
+    Application::loop();
 
     //app cleanup
     Application::end();
