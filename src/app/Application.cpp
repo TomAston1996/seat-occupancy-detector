@@ -60,7 +60,7 @@ void Application::test()
     //TODO misc test code
     FaceDetect face_detect;
 
-    std::string test_image_path = "../../../resource/test-train.png";
+    std::string test_image_path = "../../../resource/test-bus.png";
     cv::Mat img = cv::imread(test_image_path);
 
     face_detect.preprocess_image(img);

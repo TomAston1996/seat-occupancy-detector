@@ -44,6 +44,10 @@ void FaceDetect::draw_face_detect_outlines_to_image(cv::Mat& current_frame, std:
     for (int i = 0; i < faces.size(); i++) {
         //drawing rectangle around faces found in the output window (color: red, thickness: 3)
         cv::rectangle(current_frame, faces[i].tl(), faces[i].br(), cv::Scalar(50, 50, 255), 3);
+
+        //draw image label
+        cv::rectangle(current_frame, cv::Point(faces[i].tl().x, faces[i].tl().y + 20), cv::Point(faces[i].br().x, faces[i].tl().y), cv::Scalar(50, 50, 255), cv::FILLED);
+        cv::putText(current_frame, "Face Detected [no. " + std::to_string(i + 1) + "]", cv::Point(faces[i].tl().x, faces[i].tl().y + 15), cv::FONT_HERSHEY_DUPLEX, 0.5, cv::Scalar(0, 0, 0), 1);
     }
 }
 
@@ -53,7 +57,7 @@ void FaceDetect::preprocess_image(cv::Mat& image)
     cv::GaussianBlur(image, image, cv::Size(7, 7), 5, 0);
 
     //add grayscale filter to elimiate color data
-    cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
+    // cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
 
     //normalise to fix issues with brightness
     cv::normalize(image, image, 0, 255, cv::NORM_MINMAX);
