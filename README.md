@@ -5,7 +5,7 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-# 💺 Seat Occupancy Detector (Work In Progress)
+# 💺 Seat Occupancy Detector (WIP)
 
 The goal of Seat Occupancy Detector is to use OpenCV to detect when seats are occupied or not. Occupancy status will be logged such that free seats can be displayed in an external application.
 
