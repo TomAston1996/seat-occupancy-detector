@@ -43,6 +43,7 @@ void Application::loop()
     }
 
     while (run_loop) {
+        //TODO add seat detection logic
         int number_of_faces = face_detect.get_number_of_faces_detected(image, video);
         cv::imshow("Frame", image);
         cv::waitKey(1);
